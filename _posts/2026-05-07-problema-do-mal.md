@@ -2,7 +2,7 @@
 layout: post
 title: "O problema do mal e os limites da teodiceia"
 date: 2026-05-07 11:30:00 -0300
-author: "Diego R."
+author: "Gabriel Ferreira"
 tags: [Apologética, Filosofia, Teodiceia]
 reading_time: 10
 description: "Por que o problema do mal não é refutação do teísmo, mas exatamente o tipo de pergunta que a fé cristã sabe habitar."
