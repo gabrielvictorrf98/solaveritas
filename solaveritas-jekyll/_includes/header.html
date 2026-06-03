@@ -1,0 +1,22 @@
+<!-- Header / nav shared across all pages -->
+<header class="site-header">
+  <div class="container-wide">
+    <a href="{{ '/' | relative_url }}" class="brand" aria-label="solaveritas — início">
+      <span class="brand-mark">s</span>
+      <span>solaveritas</span>
+    </a>
+
+    <nav>
+      <ul class="nav" id="primaryNav">
+        <li><a href="{{ '/' | relative_url }}" {% if page.url == "/" or page.url == "/index.html" %}class="active"{% endif %}>Início</a></li>
+        <li><a href="{{ '/archive/' | relative_url }}" {% if page.url contains "/archive" %}class="active"{% endif %}>Arquivo</a></li>
+        <li><a href="{{ '/about/' | relative_url }}" {% if page.url contains "/about" %}class="active"{% endif %}>Sobre</a></li>
+      </ul>
+    </nav>
+
+    <div style="display:flex; align-items:center;">
+      <button id="themeToggle" class="theme-toggle" aria-label="Mudar tema">☾</button>
+      <button id="mobileToggle" class="mobile-toggle" aria-label="Abrir menu" aria-expanded="false">≡</button>
+    </div>
+  </div>
+</header>

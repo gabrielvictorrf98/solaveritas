@@ -1,0 +1,12 @@
+<!-- Footer shared across all pages -->
+<footer class="site-footer">
+  <div class="container-wide">
+    <span>© {{ site.time | date: "%Y" }} {{ site.title }}</span>
+    <span class="links">
+      <a href="{{ '/about/' | relative_url }}">Sobre</a>
+      <a href="{{ '/archive/' | relative_url }}">Arquivo</a>
+      <a href="mailto:{{ site.author.email }}">Contato</a>
+    </span>
+    <span class="latin">veritas liberabit vos</span>
+  </div>
+</footer>

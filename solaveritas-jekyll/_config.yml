@@ -1,0 +1,57 @@
+# ============================================================
+# solaveritas — Jekyll config
+# Compatible with GitHub Pages (no custom plugins)
+# ============================================================
+
+title: "solaveritas"
+tagline: "ensaios sobre verdade, fé e razão"
+description: "Um espaço de reflexão sobre teologia, filosofia, Reforma Protestante e a busca pela verdade. Ensaios, estudos e meditações."
+url: ""                 # Set to your GitHub Pages URL, e.g. "https://seuuser.github.io"
+baseurl: ""             # Set to your repo name if using user.github.io/repo, e.g. "/solaveritas-blog"
+lang: "pt-BR"
+author:
+  name: "Gabriel F."
+  email: "contato@solaveritas.blog"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /posts/:slug/
+paginate: 12
+paginate_path: "/page:num/"
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor
+  - node_modules
+  - .github
+  - .gitignore
+
+# Sass settings (we use plain CSS but Jekyll handles assets/)
+sass:
+  style: compressed
+
+# Reading time is calculated automatically by the post layout
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      author: "Gabriel F."
+      tags: []
+      reading_time: 5
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: page
+
+# Plugins allowed on GitHub Pages
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed

@@ -1,0 +1,67 @@
+---
+layout: default
+title: "solaveritas — ensaios sobre verdade, fé e razão"
+description: "Um espaço de reflexão sobre teologia, filosofia, Reforma Protestante e a busca pela verdade."
+---
+
+<!-- ====================== Hero ====================== -->
+<section class="hero">
+  <div class="container">
+    <h1>verdade, fé &amp; razão</h1>
+    <p class="tagline">{{ site.tagline | capitalize }} — escritos com seriedade, sem jargão vazio.</p>
+    <span class="latin">· sola veritas ·</span>
+  </div>
+</section>
+
+<!-- ====================== Posts ====================== -->
+<div class="container">
+  <div class="section-head">
+    <h2>Últimos ensaios</h2>
+    <a href="{{ '/archive/' | relative_url }}">Ver arquivo completo →</a>
+  </div>
+
+  <ul class="post-list">
+    {%- assign posts = site.posts -%}
+    {%- for post in posts limit: 1 -%}
+    <li>
+      <article class="post-card featured">
+        <div class="post-card-meta">
+          {%- if post.tags[0] -%}<span class="tag">{{ post.tags[0] }}</span><span class="dot"></span>{%- endif -%}
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%-d %b %Y" }}</time>
+          <span class="dot"></span>
+          <span class="reading">{{ post.reading_time | default: 5 }} min</span>
+        </div>
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        <p>{{ post.description | default: post.excerpt | strip_html | truncatewords: 30 }}</p>
+      </article>
+    </li>
+    {%- endfor -%}
+
+    {%- for post in posts offset: 1 limit: 10 -%}
+    <li>
+      <article class="post-card">
+        <div class="post-card-meta">
+          {%- if post.tags[0] -%}<span class="tag">{{ post.tags[0] }}</span><span class="dot"></span>{%- endif -%}
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%-d %b %Y" }}</time>
+          <span class="dot"></span>
+          <span class="reading">{{ post.reading_time | default: 5 }} min</span>
+        </div>
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        <p>{{ post.description | default: post.excerpt | strip_html | truncatewords: 25 }}</p>
+      </article>
+    </li>
+    {%- endfor -%}
+  </ul>
+</div>
+
+<!-- ====================== Newsletter ====================== -->
+<div class="container">
+  <section class="newsletter">
+    <h3>Receber os ensaios por e-mail</h3>
+    <p>Uma mensagem quinzenal. Sem spam, sem enrolação, só o texto novo. Cancele quando quiser.</p>
+    <form class="newsletter-form" aria-label="Inscrição na newsletter">
+      <input type="email" placeholder="seu@email.com" required aria-label="E-mail" />
+      <button type="submit">Assinar</button>
+    </form>
+  </section>
+</div>
