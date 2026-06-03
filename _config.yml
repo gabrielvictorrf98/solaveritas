@@ -6,8 +6,8 @@
 title: "solaveritas"
 tagline: "ensaios sobre verdade, fé e razão"
 description: "Um espaço de reflexão sobre teologia, filosofia, Reforma Protestante e a busca pela verdade. Ensaios, estudos e meditações."
-url: ""                 # Set to your GitHub Pages URL, e.g. "https://seuuser.github.io"
-baseurl: ""             # Set to your repo name if using user.github.io/repo, e.g. "/solaveritas-blog"
+url: "https://gabrielvictorrf98.github.io"
+baseurl: "/solaveritas"
 lang: "pt-BR"
 author:
   name: "Gabriel F."
