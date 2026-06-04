@@ -24,7 +24,7 @@ description: "Todos os ensaios publicados no solaveritas, organizados por data."
         {%- assign current_year = post_year -%}
         <h2 class="archive-year">{{ post_year }}</h2>
       {%- endif -%}
-      <div class="archive-item" data-tags="{{ post.tags | join: ' ' }}" data-title="{{ post.title | downcase }}">
+      <div class="archive-item" data-tags="{{ post.tags | join: '|' | downcase }}" data-title="{{ post.title | downcase }}">
         <time class="date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%-d %b" }}</time>
         <span class="title">
           <a href="{{ post.url | relative_url }}">{{ post.title }}</a>

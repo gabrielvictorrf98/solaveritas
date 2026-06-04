@@ -629,8 +629,52 @@ li { margin: 0.25em 0; }
 
 .newsletter-form button:hover { background: var(--accent-strong); }
 
+.newsletter-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.newsletter .button-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.7em 1.2em;
+  border-radius: var(--radius);
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--bg-elevated);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.newsletter .button-link:hover {
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+  color: var(--bg-elevated);
+}
+
+.newsletter .button-link.secondary {
+  background: transparent;
+  color: var(--accent);
+}
+
+.newsletter .button-link.secondary:hover {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+.newsletter-note {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
 @media (max-width: 480px) {
   .newsletter-form { flex-direction: column; }
+  .newsletter-actions { flex-direction: column; }
 }
 
 /* ============================================================ Footer */

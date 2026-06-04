@@ -4,6 +4,12 @@ layout: default
 
 <article>
   <div class="container">
+    {%- assign author_key = page.author_key | default: page.author | slugify -%}
+    {%- assign author_profile = site.data.authors[author_key] -%}
+    {%- assign author_name = page.author -%}
+    {%- if author_profile and author_profile.name -%}
+      {%- assign author_name = author_profile.name -%}
+    {%- endif -%}
     <header class="article-header">
       <div class="meta">
         {%- assign first_tag = page.tags | first -%}
@@ -18,9 +24,9 @@ layout: default
         <span id="readingTime" data-words="{{ page.content | number_of_words }}">
           {{ page.reading_time | default: 5 }} min de leitura
         </span>
-        {%- if page.author -%}
+        {%- if author_name -%}
           &nbsp;·&nbsp;
-          <span>por <strong>{{ page.author }}</strong></span>
+          <span>por <strong>{{ author_name }}</strong></span>
         {%- endif -%}
       </div>
       <h1>{{ page.title }}</h1>
@@ -39,7 +45,7 @@ layout: default
       {%- if page.tags and page.tags.size > 0 -%}
       <div class="tags-row">
         {%- for tag in page.tags -%}
-          <a href="{{ '/archive/?tag=' | append: tag | relative_url }}" class="tag">{{ tag }}</a>
+          <a href="{{ '/archive/?tag=' | append: (tag | url_encode) | relative_url }}" class="tag">{{ tag }}</a>
         {%- endfor -%}
       </div>
       {%- endif -%}
@@ -47,7 +53,7 @@ layout: default
         <span>Compartilhar:</span>
         <a href="https://twitter.com/intent/tweet?url={{ page.url | absolute_url | url_encode }}&text={{ page.title | url_encode }}" target="_blank" rel="noopener">Twitter</a>
         <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url | url_encode }}" target="_blank" rel="noopener">Facebook</a>
-        <a href="#" data-share-link>Copiar link</a>
+        <a href="#" data-share-link data-share-url="{{ page.url | absolute_url }}">Copiar link</a>
       </div>
     </footer>
   </div>

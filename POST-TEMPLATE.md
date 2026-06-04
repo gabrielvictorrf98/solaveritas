@@ -3,6 +3,7 @@ layout: post
 title: "[TEMPLATE] Substitua este título pelo seu"
 date: 2026-06-15 09:00:00 -0300
 author: "Gabriel F."
+author_key: "gabriel-f"
 tags: [tag-principal, tag-secundária]
 reading_time: 5
 description: "Substitua esta descrição por uma frase de resumo do post (até ~150 caracteres)."

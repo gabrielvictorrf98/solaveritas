@@ -57,11 +57,31 @@ description: "Um espaço de reflexão sobre teologia, filosofia, Reforma Protest
 <!-- ====================== Newsletter ====================== -->
 <div class="container">
   <section class="newsletter">
-    <h3>Receber os ensaios por e-mail</h3>
-    <p>Uma mensagem quinzenal. Sem spam, sem enrolação, só o texto novo. Cancele quando quiser.</p>
-    <form class="newsletter-form" aria-label="Inscrição na newsletter">
-      <input type="email" placeholder="seu@email.com" required aria-label="E-mail" />
-      <button type="submit">Assinar</button>
+    <h3>{{ site.newsletter.title }}</h3>
+    {% if site.newsletter.enabled and site.newsletter.provider_url %}
+    <p>Uma mensagem quinzenal. O cadastro é feito via {{ site.newsletter.provider_name | default: "serviço externo de newsletter" }} e o GitHub Pages continua servindo só o site estático.</p>
+    <form
+      class="newsletter-form"
+      aria-label="Inscrição na newsletter"
+      action="{{ site.newsletter.provider_url }}"
+      method="post"
+      data-newsletter-enabled="true">
+      <input
+        type="email"
+        name="{{ site.newsletter.email_field_name | default: 'email' }}"
+        placeholder="seu@email.com"
+        required
+        aria-label="E-mail" />
+      <button type="submit">{{ site.newsletter.button_label | default: "Assinar" }}</button>
     </form>
+    <p class="newsletter-note">Ao enviar, você conclui a inscrição diretamente no provedor configurado.</p>
+    {% else %}
+    <p>O site já publica um feed RSS automaticamente, mas ainda não há um provedor de newsletter configurado para disparar emails a cada novo post.</p>
+    <div class="newsletter-actions">
+      <a class="button-link" href="{{ '/feed.xml' | relative_url }}">Assinar via RSS</a>
+      <a class="button-link secondary" href="mailto:{{ site.author.email }}?subject=Quero%20receber%20os%20novos%20ensaios">Pedir aviso por email</a>
+    </div>
+    <p class="newsletter-note">Quando você quiser, basta configurar um serviço externo como Buttondown, Brevo ou Mailchimp no `_config.yml`.</p>
+    {% endif %}
   </section>
 </div>

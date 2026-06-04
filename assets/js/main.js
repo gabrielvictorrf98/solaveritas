@@ -89,41 +89,80 @@
   }
 
   /* ---------- Search filter (archive.html) ---------- */
+  function applyArchiveFilter(items, years, query, tag) {
+    const normalizedQuery = (query || '').trim().toLowerCase();
+    const normalizedTag = (tag || '').trim().toLowerCase();
+
+    items.forEach(item => {
+      const text = item.innerText.toLowerCase();
+      const tags = (item.dataset.tags || '').toLowerCase();
+      const matchesQuery = !normalizedQuery || text.includes(normalizedQuery);
+      const matchesTag = !normalizedTag || tags.split('|').includes(normalizedTag);
+      item.style.display = matchesQuery && matchesTag ? '' : 'none';
+    });
+
+    years.forEach(year => {
+      let next = year.nextElementSibling;
+      let visible = false;
+      while (next && !next.classList.contains('archive-year')) {
+        if (next.classList.contains('archive-item') && next.style.display !== 'none') {
+          visible = true;
+        }
+        next = next.nextElementSibling;
+      }
+      year.style.display = visible ? '' : 'none';
+    });
+  }
+
   function initSearch() {
     const input = document.getElementById('searchInput');
     if (!input) return;
     const items = Array.from(document.querySelectorAll('.archive-item'));
     const years = Array.from(document.querySelectorAll('.archive-year'));
+    const params = new URLSearchParams(window.location.search);
+    const selectedTag = (params.get('tag') || '').trim().toLowerCase();
+
+    if (selectedTag) {
+      input.value = selectedTag;
+      input.setAttribute('aria-label', `Buscar ensaios pela tag ${selectedTag}`);
+    }
+
+    applyArchiveFilter(items, years, input.value, selectedTag);
+
     input.addEventListener('input', () => {
-      const q = input.value.trim().toLowerCase();
-      items.forEach(item => {
-        const text = item.innerText.toLowerCase();
-        item.style.display = !q || text.includes(q) ? '' : 'none';
-      });
-      // hide year headers if all items under them are hidden
-      years.forEach(year => {
-        let next = year.nextElementSibling;
-        let visible = false;
-        while (next && !next.classList.contains('archive-year')) {
-          if (next.classList.contains('archive-item') &&
-              next.style.display !== 'none') visible = true;
-          next = next.nextElementSibling;
-        }
-        year.style.display = visible ? '' : 'none';
-      });
+      applyArchiveFilter(items, years, input.value, selectedTag);
     });
   }
 
-  /* ---------- Newsletter form (demo) ---------- */
-  function initNewsletter() {
-    const form = document.querySelector('.newsletter-form');
-    if (!form) return;
-    form.addEventListener('submit', e => {
+  /* ---------- Share links ---------- */
+  function initShareLinks() {
+    const link = document.querySelector('[data-share-link]');
+    if (!link) return;
+
+    link.addEventListener('click', async e => {
       e.preventDefault();
-      const input = form.querySelector('input[type="email"]');
-      if (!input || !input.value) return;
-      form.innerHTML =
-        '<p class="muted" style="margin:0;font-style:italic;">Obrigado. Você receberá os próximos ensaios.</p>';
+      const shareUrl = link.getAttribute('data-share-url') || window.location.href;
+      const originalText = link.textContent;
+
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(shareUrl);
+        } else {
+          const input = document.createElement('input');
+          input.value = shareUrl;
+          document.body.appendChild(input);
+          input.select();
+          document.execCommand('copy');
+          document.body.removeChild(input);
+        }
+        link.textContent = 'Link copiado';
+      } catch (_) {
+        link.textContent = 'Copie pela barra do navegador';
+      }
+
+      window.setTimeout(() => {
+        link.textContent = originalText;
+      }, 1800);
     });
   }
 
@@ -135,6 +174,6 @@
     highlightCurrentNav();
     calcReadingTime();
     initSearch();
-    initNewsletter();
+    initShareLinks();
   });
 })();

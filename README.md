@@ -1,6 +1,6 @@
 # solaveritas
 
-> Ensaios sobre verdade, fé e razão — blog Jekyll em PT-BR, otimizado para GitHub Pages.
+> Ensaios sobre verdade, fé e razão — blog Jekyll em PT-BR, otimizado para GitHub Pages, com RSS nativo e suporte opcional a newsletter via serviço externo.
 
 ## 🚀 Setup no GitHub Pages (10 min, do zero)
 
@@ -116,7 +116,7 @@ E listas são assim:
 7. Role pra baixo, escreva uma mensagem: `post: novo ensaio sobre X`
 8. Clique **Commit new file**.
 
-**Pronto.** Em 30-60 segundos o post aparece no site. A home, o arquivo e o sitemap se atualizam sozinhos.
+**Pronto.** Em 30-60 segundos o post aparece no site. A home, o arquivo, o sitemap e o feed RSS se atualizam sozinhos.
 
 ### Jeito 2 — Git local (pra quem escreve muito)
 
@@ -157,6 +157,7 @@ layout: post                          # sempre "post" para artigos
 title: "Título do post"               # obrigatório, aparece em todo lugar
 date: 2026-06-15 09:00:00 -0300       # YYYY-MM-DD HH:MM:SS + timezone
 author: "Seu nome"                    # aparece no byline
+author_key: "gabriel-f"               # opcional; busca dados em _data/authors.yml
 tags: [reforma, teologia]             # array; primeiro vira a tag principal
 reading_time: 7                       # estimativa em minutos
 description: "Resumo de 1 linha."     # aparece em cards e meta description
@@ -195,8 +196,18 @@ em bloco
 - **Cores:** edite o topo de `assets/css/style.css` (variáveis `--accent`, `--bg` etc.)
 - **Tipografia:** troque no Google Fonts link em `_includes/header.html` (via `_layouts/default.html`)
 - **Nome do blog:** busque/substitua "solaveritas" em todos os arquivos
-- **Avatar do autor:** edite `_data/authors.yml` (crie essa pasta/arquivo) e referencie no post
+- **Autores e perfis:** edite `_data/authors.yml` e use `author_key` no post quando quiser centralizar nome/email por autor
 - **Texto do hero / tagline:** edite `_config.yml` no campo `tagline`
+- **Newsletter:** configure `newsletter.enabled`, `newsletter.provider_url` e `newsletter.provider_name` em `_config.yml` para conectar um serviço externo sem sair do GitHub Pages
+
+## 📬 Newsletter e email
+
+O GitHub Pages publica **arquivos estáticos**. Isso significa:
+
+- O repositório já gera automaticamente um feed em `/feed.xml` via `jekyll-feed`
+- **Nenhum email é disparado sozinho** quando você publica um post
+- Para enviar posts por email, conecte o formulário a um provedor externo como Buttondown, Brevo, Mailchimp ou ConvertKit
+- Sem provedor configurado, a home mostra opções honestas de RSS e contato por email, sem fingir que existe automação
 
 ---
 

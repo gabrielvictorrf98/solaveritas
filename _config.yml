@@ -13,6 +13,15 @@ author:
   name: "Gabriel F."
   email: "contato@solaveritas.blog"
 
+newsletter:
+  enabled: false
+  title: "Receber os ensaios por e-mail"
+  description: "A newsletter pode ser integrada a um serviço externo sem sair do GitHub Pages."
+  provider_name: ""
+  provider_url: ""
+  email_field_name: "email"
+  button_label: "Assinar"
+
 # Build settings
 markdown: kramdown
 highlighter: rouge
