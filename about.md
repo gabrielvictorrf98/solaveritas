@@ -33,7 +33,7 @@ Textos de um pequeno grupo de autores: seminaristas, pastores, teólogos leigos,
 
 ## Como ler
 
-Há um ensaio novo a cada duas semanas, mais ou menos. Você pode seguir por [RSS]({{ '/feed.xml' | relative_url }}){% if site.newsletter.enabled and site.newsletter.provider_url %}, inscrever-se na newsletter{% endif %} ou simplesmente visitar quando quiser. Não há paywall, não há pop-ups, não há contadores. Só texto.
+Há um ensaio novo a cada duas semanas, mais ou menos. Você pode seguir por [RSS]({{ '/feed.xml' | relative_url }}){% if site.newsletter.enabled and site.newsletter.provider == "buttondown" and site.newsletter.buttondown.username != "" %}, inscrever-se na newsletter{% endif %} ou simplesmente visitar quando quiser. Não há paywall, não há pop-ups, não há contadores. Só texto.
 
 ## Contato
 

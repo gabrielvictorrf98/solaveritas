@@ -1,6 +1,6 @@
 # solaveritas
 
-> Ensaios sobre verdade, fé e razão — blog Jekyll em PT-BR, otimizado para GitHub Pages, com RSS nativo e suporte opcional a newsletter via serviço externo.
+> Ensaios sobre verdade, fé e razão — blog Jekyll em PT-BR, otimizado para GitHub Pages, com RSS nativo e integração opcional com Buttondown para newsletter.
 
 ## 🚀 Setup no GitHub Pages (10 min, do zero)
 
@@ -198,7 +198,7 @@ em bloco
 - **Nome do blog:** busque/substitua "solaveritas" em todos os arquivos
 - **Autores e perfis:** edite `_data/authors.yml` e use `author_key` no post quando quiser centralizar nome/email por autor
 - **Texto do hero / tagline:** edite `_config.yml` no campo `tagline`
-- **Newsletter:** configure `newsletter.enabled`, `newsletter.provider_url` e `newsletter.provider_name` em `_config.yml` para conectar um serviço externo sem sair do GitHub Pages
+- **Newsletter:** configure `newsletter.enabled` e `newsletter.buttondown.username` em `_config.yml` para ativar a integração com Buttondown sem sair do GitHub Pages
 
 ## 📬 Newsletter e email
 
@@ -206,8 +206,35 @@ O GitHub Pages publica **arquivos estáticos**. Isso significa:
 
 - O repositório já gera automaticamente um feed em `/feed.xml` via `jekyll-feed`
 - **Nenhum email é disparado sozinho** quando você publica um post
-- Para enviar posts por email, conecte o formulário a um provedor externo como Buttondown, Brevo, Mailchimp ou ConvertKit
-- Sem provedor configurado, a home mostra opções honestas de RSS e contato por email, sem fingir que existe automação
+- Para enviar posts por email, este projeto está preparado para integrar com **Buttondown**
+- Sem conta configurada, a home mostra opções honestas de RSS e contato por email, sem fingir que existe automação
+
+### Ativar Buttondown
+
+1. Crie sua newsletter no Buttondown.
+2. Abra `_config.yml`.
+3. Preencha:
+
+```yaml
+newsletter:
+  enabled: true
+  provider: "buttondown"
+  provider_name: "Buttondown"
+  button_label: "Assinar"
+  buttondown:
+    username: "seu-usuario"
+    tag: "site"
+```
+
+4. Faça commit e push.
+
+Depois disso, o fluxo fica assim:
+
+- O leitor envia o email pelo formulário da home
+- O formulário posta direto no endpoint embed do Buttondown
+- O Buttondown registra o inscrito e pode mandar email de confirmação, se sua lista usar double opt-in
+- Quando você publicar um novo post no blog, o GitHub Pages atualiza o site e o feed RSS
+- A partir daí, o disparo do email é feito pelo Buttondown, no formato da campanha que você configurar lá
 
 ---
 

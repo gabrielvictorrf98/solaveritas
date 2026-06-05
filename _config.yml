@@ -17,10 +17,12 @@ newsletter:
   enabled: false
   title: "Receber os ensaios por e-mail"
   description: "A newsletter pode ser integrada a um serviço externo sem sair do GitHub Pages."
-  provider_name: ""
-  provider_url: ""
-  email_field_name: "email"
+  provider: "buttondown"
+  provider_name: "Buttondown"
   button_label: "Assinar"
+  buttondown:
+    username: ""
+    tag: "site"
 
 # Build settings
 markdown: kramdown
